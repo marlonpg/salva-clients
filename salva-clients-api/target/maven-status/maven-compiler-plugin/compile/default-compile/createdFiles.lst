@@ -1,0 +1,5 @@
+com\salvaclients\salvaclientsapi\controller\ClientController.class
+com\salvaclients\salvaclientsapi\repository\ClientRepository.class
+com\salvaclients\salvaclientsapi\model\Client.class
+com\salvaclients\salvaclientsapi\SalvaClientsApiApplication.class
+com\salvaclients\salvaclientsapi\WebSecurityConfig.class

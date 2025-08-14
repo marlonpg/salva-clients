@@ -1,0 +1,37 @@
+.client-search {
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.client-search h2 {
+  color: red;
+  margin-bottom: 1rem;
+}
+.search-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.search-form input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.client-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.client-table th {
+  background: green;
+  color: white;
+  padding: 0.5rem;
+}
+.client-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
