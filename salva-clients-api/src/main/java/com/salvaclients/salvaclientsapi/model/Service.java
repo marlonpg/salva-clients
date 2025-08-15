@@ -16,7 +16,10 @@ public class Service {
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
+
     private String severity;
+
+    private java.math.BigDecimal amount;
 
     private LocalDateTime createdDate;
 
@@ -32,8 +35,12 @@ public class Service {
     public Client getClient() { return client; }
     public void setClient(Client client) { this.client = client; }
 
+
     public String getSeverity() { return severity; }
     public void setSeverity(String severity) { this.severity = severity; }
+
+    public java.math.BigDecimal getAmount() { return amount; }
+    public void setAmount(java.math.BigDecimal amount) { this.amount = amount; }
 
     public LocalDateTime getCreatedDate() { return createdDate; }
     public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }

@@ -1,15 +1,15 @@
-2025-08-14 01:05:45.470265-03:00 jdbc[3]: exception
+2025-08-15 00:54:46.830829-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
 SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-224]
-2025-08-14 01:11:18.243463-03:00 jdbc[3]: exception
+2025-08-15 00:55:07.927519-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-14 01:11:32.261644-03:00 jdbc[3]: exception
+2025-08-15 00:55:33.749915-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-14 01:12:01.490268-03:00 jdbc[3]: exception
+2025-08-15 00:55:50.433828-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-14 17:20:03.481795-03:00 jdbc[3]: exception
+2025-08-15 00:56:18.364342-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-14 22:54:04.700024-03:00 jdbc[3]: exception
+2025-08-15 00:56:31.399950-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-14 22:54:21.642014-03:00 jdbc[3]: exception
+2025-08-15 00:57:12.981224-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

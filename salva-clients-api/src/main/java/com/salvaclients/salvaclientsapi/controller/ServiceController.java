@@ -48,8 +48,8 @@ public class ServiceController {
         service.setClient(clientOpt.get());
         service.setCreatedDate(LocalDateTime.now());
         service.setUpdatedDate(LocalDateTime.now());
-        Service saved = serviceRepository.save(service);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    Service saved = serviceRepository.save(service);
+    return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
@@ -59,9 +59,10 @@ public class ServiceController {
             return ResponseEntity.notFound().build();
         }
         Service existing = existingOpt.get();
-        existing.setPet(service.getPet());
-        existing.setSeverity(service.getSeverity());
-        existing.setUpdatedDate(LocalDateTime.now());
+    existing.setPet(service.getPet());
+    existing.setSeverity(service.getSeverity());
+    existing.setAmount(service.getAmount());
+    existing.setUpdatedDate(LocalDateTime.now());
         if (service.getClient() != null && service.getClient().getId() != null) {
             Optional<Client> clientOpt = clientRepository.findById(service.getClient().getId());
             clientOpt.ifPresent(existing::setClient);

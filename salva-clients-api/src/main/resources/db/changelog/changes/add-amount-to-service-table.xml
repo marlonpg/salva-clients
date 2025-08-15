@@ -4,7 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <include file="db/changelog/changes/create-client-table.xml"/>
-    <include file="db/changelog/changes/create-service-table.xml"/>
-    <include file="db/changelog/changes/add-amount-to-service-table.xml"/>
+    <changeSet id="3" author="github-copilot">
+        <addColumn tableName="service">
+            <column name="amount" type="DECIMAL(10,2)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

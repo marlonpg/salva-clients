@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ClientForm from './components/ClientForm';
 import ClientSearch from './components/ClientSearch';
 import ClientServices from './components/ClientServices';
+import UserProfile from './components/UserProfile';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<ClientForm />} />
           <Route path="/search" element={<ClientSearch />} />
           <Route path="/services" element={<ClientServices />} />
+          <Route path="/clients/:id" element={<UserProfile />} />
         </Routes>
       </div>
     </Router>

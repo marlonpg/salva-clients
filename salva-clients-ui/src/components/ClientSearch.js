@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ClientSearch.css';
 
 export default function ClientSearch() {
   const [clients, setClients] = useState([]);
   const [query, setQuery] = useState({ name: '', cpf: '', city: '' });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const fetchClients = async () => {
     setLoading(true);
@@ -58,7 +60,7 @@ export default function ClientSearch() {
           </thead>
           <tbody>
             {clients.map(client => (
-              <tr key={client.id}>
+              <tr key={client.id} style={{ cursor: 'pointer' }} onClick={() => navigate(`/clients/${client.id}`)}>
                 <td>{client.name}</td>
                 <td>{client.lastname}</td>
                 <td>{client.cpf}</td>

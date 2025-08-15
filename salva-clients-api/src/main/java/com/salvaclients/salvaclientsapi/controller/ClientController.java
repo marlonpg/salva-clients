@@ -35,4 +35,24 @@ public class ClientController {
                         && (city == null || c.getCity().toLowerCase().contains(city.toLowerCase())))
                 .toList();
     }
+    @GetMapping("/{id}")
+    public Client getClientById(@PathVariable Long id) {
+        return clientRepository.findById(id).orElse(null);
+    }
+
+    @PutMapping("/{id}")
+    public Client updateClient(@PathVariable Long id, @RequestBody Client client) {
+        return clientRepository.findById(id)
+            .map(existing -> {
+                existing.setName(client.getName());
+                existing.setLastname(client.getLastname());
+                existing.setCpf(client.getCpf());
+                existing.setAddress(client.getAddress());
+                existing.setCity(client.getCity());
+                existing.setEmailAddress(client.getEmailAddress());
+                existing.setPhoneNumber(client.getPhoneNumber());
+                return clientRepository.save(existing);
+            })
+            .orElse(null);
+    }
 }

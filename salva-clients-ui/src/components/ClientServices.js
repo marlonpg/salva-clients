@@ -5,6 +5,7 @@ const initialState = {
   pet: '',
   clientId: '',
   severity: '',
+  amount: '',
 };
 
 export default function ClientServices() {
@@ -53,6 +54,7 @@ export default function ClientServices() {
       const payload = {
         pet: form.pet,
         severity: form.severity,
+        amount: form.amount ? parseFloat(form.amount) : 0,
         client: { id: form.clientId }
       };
       let res;
@@ -85,6 +87,7 @@ export default function ClientServices() {
       pet: service.pet,
       clientId: service.client.id,
       severity: service.severity,
+      amount: service.amount ?? '',
     });
     setEditingId(service.id);
   };
@@ -117,6 +120,7 @@ export default function ClientServices() {
           ))}
         </select>
         <input name="severity" placeholder="Severity" value={form.severity} onChange={handleChange} required />
+        <input name="amount" type="number" step="0.01" min="0" placeholder="Amount" value={form.amount} onChange={handleChange} required />
         <button type="submit" disabled={loading} style={{ background: editingId ? 'orange' : 'green', color: 'white' }}>
           {editingId ? 'Update Service' : 'Add Service'}
         </button>
@@ -130,6 +134,7 @@ export default function ClientServices() {
               <th>Pet</th>
               <th>Client</th>
               <th>Severity</th>
+              <th>Amount</th>
               <th>Created</th>
               <th>Updated</th>
               <th>Actions</th>
@@ -141,6 +146,7 @@ export default function ClientServices() {
                 <td>{service.pet}</td>
                 <td>{service.client ? `${service.client.name} ${service.client.lastname}` : ''}</td>
                 <td>{service.severity}</td>
+                <td>{service.amount != null ? Number(service.amount).toFixed(2) : ''}</td>
                 <td>{service.createdDate ? service.createdDate.replace('T', ' ').slice(0, 19) : ''}</td>
                 <td>{service.updatedDate ? service.updatedDate.replace('T', ' ').slice(0, 19) : ''}</td>
                 <td>
