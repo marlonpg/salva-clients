@@ -1,0 +1,28 @@
+# Global
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Java / Spring Boot (salva-clients-api)
+/salva-clients-api/target/
+/salva-clients-api/.classpath
+/salva-clients-api/.project
+/salva-clients-api/.settings/
+/salva-clients-api/.idea/
+/salva-clients-api/*.iml
+
+# Node / React (salva-clients-ui)
+/salva-clients-ui/node_modules/
+/salva-clients-ui/build/
+/salva-clients-ui/.env.local
+/salva-clients-ui/.env.development.local
+/salva-clients-ui/.env.test.local
+/salva-clients-ui/.env.production.local
+/salva-clients-ui/.idea/
+/salva-clients-ui/*.iml
+
+# OS/Editor
+.vscode/
+*.swp
+*.swo
