@@ -7,4 +7,5 @@
     <include file="db/changelog/changes/create-client-table.xml"/>
     <include file="db/changelog/changes/create-service-table.xml"/>
     <include file="db/changelog/changes/add-amount-to-service-table.xml"/>
+    <include file="db/changelog/changes/create-product-table.xml"/>
 </databaseChangeLog>

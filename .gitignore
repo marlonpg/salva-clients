@@ -3,7 +3,8 @@
 Thumbs.db
 *.log
 *.tmp
-
+.idea
+*.db
 # Java / Spring Boot (salva-clients-api)
 /salva-clients-api/target/
 /salva-clients-api/.classpath

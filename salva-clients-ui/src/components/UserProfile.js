@@ -69,11 +69,11 @@ export default function UserProfile() {
     }
   };
 
-  if (!client) return <div>Loading...</div>;
+  if (!client) return <div>Carregando...</div>;
 
   return (
     <div className="user-profile">
-      <h2>User Profile</h2>
+      <h2>Perfil do Cliente</h2>
       {editMode ? (
         <form className="edit-form" onSubmit={handleEditSubmit}>
           <input name="name" value={editForm.name} onChange={handleEditChange} required />
@@ -83,31 +83,31 @@ export default function UserProfile() {
           <input name="city" value={editForm.city} onChange={handleEditChange} required />
           <input name="emailAddress" value={editForm.emailAddress} onChange={handleEditChange} required />
           <input name="phoneNumber" value={editForm.phoneNumber} onChange={handleEditChange} required />
-          <button type="submit" style={{ background: 'green', color: 'white' }}>Save</button>
-          <button type="button" onClick={() => setEditMode(false)} style={{ marginLeft: '1rem' }}>Cancel</button>
+          <button type="submit" style={{ background: 'green', color: 'white' }}>Salvar</button>
+          <button type="button" onClick={() => setEditMode(false)} style={{ marginLeft: '1rem' }}>Cancelar</button>
         </form>
       ) : (
         <div className="client-info">
-          <div><b>Name:</b> {client.name}</div>
-          <div><b>Lastname:</b> {client.lastname}</div>
+          <div><b>Nome:</b> {client.name}</div>
+          <div><b>Sobrenome:</b> {client.lastname}</div>
           <div><b>CPF:</b> {client.cpf}</div>
-          <div><b>Address:</b> {client.address}</div>
-          <div><b>City:</b> {client.city}</div>
+          <div><b>Endereço:</b> {client.address}</div>
+          <div><b>Cidade:</b> {client.city}</div>
           <div><b>Email:</b> {client.emailAddress}</div>
-          <div><b>Phone:</b> {client.phoneNumber}</div>
-          <button onClick={() => setEditMode(true)} style={{ marginTop: '1rem', background: 'orange', color: 'white' }}>Edit Info</button>
-          <button onClick={() => navigate(-1)} style={{ marginLeft: '1rem' }}>Back</button>
+          <div><b>Telefone:</b> {client.phoneNumber}</div>
+          <button onClick={() => setEditMode(true)} style={{ marginTop: '1rem', background: 'orange', color: 'white' }}>Editar</button>
+          <button onClick={() => navigate(-1)} style={{ marginLeft: '1rem' }}>Voltar</button>
         </div>
       )}
-      <h3 style={{ marginTop: '2rem' }}>Services</h3>
+      <h3 style={{ marginTop: '2rem' }}>Serviços</h3>
       <table className="service-table">
         <thead>
           <tr>
             <th>Pet</th>
-            <th>Severity</th>
-            <th>Amount</th>
-            <th>Created</th>
-            <th>Updated</th>
+            <th>Gravidade</th>
+            <th>Valor</th>
+            <th>Criado</th>
+            <th>Atualizado</th>
           </tr>
         </thead>
         <tbody>

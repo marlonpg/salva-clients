@@ -38,24 +38,24 @@ export default function ClientSearch() {
 
   return (
     <div className="client-search">
-      <h2>Search Clients</h2>
+      <h2>Buscar Clientes</h2>
       <form className="search-form" onSubmit={handleSearch}>
-        <input name="name" placeholder="Name" value={query.name} onChange={handleChange} />
+        <input name="name" placeholder="Nome" value={query.name} onChange={handleChange} />
         <input name="cpf" placeholder="CPF" value={query.cpf} onChange={handleChange} />
-        <input name="city" placeholder="City" value={query.city} onChange={handleChange} />
-        <button type="submit" style={{ background: 'red', color: 'white' }}>Search</button>
+        <input name="city" placeholder="Cidade" value={query.city} onChange={handleChange} />
+        <button type="submit" style={{ background: 'green', color: 'white' }}>Buscar</button>
       </form>
-      {loading ? <div>Loading...</div> : (
+      {loading ? <div>Carregando...</div> : (
         <table className="client-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Lastname</th>
+              <th>Nome</th>
+              <th>Sobrenome</th>
               <th>CPF</th>
-              <th>Address</th>
-              <th>City</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
               <th>Email</th>
-              <th>Phone</th>
+              <th>Telefone</th>
             </tr>
           </thead>
           <tbody>

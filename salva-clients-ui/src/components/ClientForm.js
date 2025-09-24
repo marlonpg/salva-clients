@@ -42,25 +42,25 @@ export default function ClientForm({ onSuccess }) {
 
   return (
     <form className="client-form" onSubmit={handleSubmit}>
-      <h2>Register New Client</h2>
+      <h2>Cadastrar Novo Cliente</h2>
       <div className="form-row">
-        <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-        <input name="lastname" placeholder="Lastname" value={form.lastname} onChange={handleChange} required />
+        <input name="name" placeholder="Nome" value={form.name} onChange={handleChange} required />
+        <input name="lastname" placeholder="Sobrenome" value={form.lastname} onChange={handleChange} required />
       </div>
       <div className="form-row">
         <input name="cpf" placeholder="CPF" value={form.cpf} onChange={handleChange} required />
-        <input name="address" placeholder="Address" value={form.address} onChange={handleChange} required />
+        <input name="address" placeholder="Endereço" value={form.address} onChange={handleChange} required />
       </div>
       <div className="form-row">
-        <input name="city" placeholder="City" value={form.city} onChange={handleChange} required />
-        <input name="emailAddress" placeholder="Email Address" type="email" value={form.emailAddress} onChange={handleChange} required />
+        <input name="city" placeholder="Cidade" value={form.city} onChange={handleChange} required />
+        <input name="emailAddress" placeholder="Email" type="email" value={form.emailAddress} onChange={handleChange} required />
       </div>
       <div className="form-row">
-        <input name="phoneNumber" placeholder="Phone Number" value={form.phoneNumber} onChange={handleChange} required />
+        <input name="phoneNumber" placeholder="Telefone" value={form.phoneNumber} onChange={handleChange} required />
       </div>
       {error && <div className="error">{error}</div>}
       <button type="submit" disabled={loading} style={{ background: 'green', color: 'white' }}>
-        {loading ? 'Saving...' : 'Save Client'}
+        {loading ? 'Salvando...' : 'Salvar Cliente'}
       </button>
     </form>
   );

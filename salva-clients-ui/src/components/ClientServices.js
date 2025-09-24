@@ -110,34 +110,34 @@ export default function ClientServices() {
 
   return (
     <div className="client-services">
-      <h2>Client Services</h2>
+      <h2>Serviços</h2>
       <form className="service-form" onSubmit={handleSubmit}>
         <input name="pet" placeholder="Pet" value={form.pet} onChange={handleChange} required />
         <select name="clientId" value={form.clientId} onChange={handleChange} required>
-          <option value="">Select Client</option>
+          <option value="">Selecionar Cliente</option>
           {clients.map(client => (
             <option key={client.id} value={client.id}>{client.name} {client.lastname}</option>
           ))}
         </select>
-        <input name="severity" placeholder="Severity" value={form.severity} onChange={handleChange} required />
-        <input name="amount" type="number" step="0.01" min="0" placeholder="Amount" value={form.amount} onChange={handleChange} required />
+        <input name="severity" placeholder="Gravidade" value={form.severity} onChange={handleChange} required />
+        <input name="amount" type="number" step="0.01" min="0" placeholder="Valor" value={form.amount} onChange={handleChange} required />
         <button type="submit" disabled={loading} style={{ background: editingId ? 'orange' : 'green', color: 'white' }}>
-          {editingId ? 'Update Service' : 'Add Service'}
+          {editingId ? 'Atualizar Serviço' : 'Adicionar Serviço'}
         </button>
-        {editingId && <button type="button" onClick={() => { setForm(initialState); setEditingId(null); }} style={{ marginLeft: '1rem' }}>Cancel</button>}
+        {editingId && <button type="button" onClick={() => { setForm(initialState); setEditingId(null); }} style={{ marginLeft: '1rem' }}>Cancelar</button>}
       </form>
       {error && <div className="error">{error}</div>}
-      {loading ? <div>Loading...</div> : (
+      {loading ? <div>Carregando...</div> : (
         <table className="service-table">
           <thead>
             <tr>
               <th>Pet</th>
-              <th>Client</th>
-              <th>Severity</th>
-              <th>Amount</th>
-              <th>Created</th>
-              <th>Updated</th>
-              <th>Actions</th>
+              <th>Cliente</th>
+              <th>Gravidade</th>
+              <th>Valor</th>
+              <th>Criado</th>
+              <th>Atualizado</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -150,8 +150,8 @@ export default function ClientServices() {
                 <td>{service.createdDate ? service.createdDate.replace('T', ' ').slice(0, 19) : ''}</td>
                 <td>{service.updatedDate ? service.updatedDate.replace('T', ' ').slice(0, 19) : ''}</td>
                 <td>
-                  <button onClick={() => handleEdit(service)} style={{ marginRight: '0.5rem', background: 'orange', color: 'white' }}>Edit</button>
-                  <button onClick={() => handleDelete(service.id)} style={{ background: 'red', color: 'white' }}>Delete</button>
+                  <button onClick={() => handleEdit(service)} style={{ marginRight: '0.5rem', background: 'orange', color: 'white' }}>Editar</button>
+                  <button onClick={() => handleDelete(service.id)} style={{ background: 'red', color: 'white' }}>Excluir</button>
                 </td>
               </tr>
             ))}
