@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { apiRequest } from '../utils/api';
 import './UserProfile.css';
 
 export default function UserProfile() {
@@ -21,7 +22,7 @@ export default function UserProfile() {
   const fetchClient = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8080/api/clients/${id}`);
+      const res = await apiRequest(`/clients/${id}`);
       const data = await res.json();
       setClient(data);
       setEditForm(data);
@@ -35,7 +36,7 @@ export default function UserProfile() {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/services');
+      const res = await apiRequest('/services');
       const allServices = await res.json();
       setServices(allServices.filter(s => s.client && String(s.client.id) === String(id)));
     } catch (err) {
@@ -54,9 +55,8 @@ export default function UserProfile() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`http://localhost:8080/api/clients/${id}`, {
+      const res = await apiRequest(`/clients/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editForm)
       });
       if (!res.ok) throw new Error('Failed to update client');

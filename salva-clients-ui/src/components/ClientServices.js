@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiRequest } from '../utils/api';
 import './ClientServices.css';
 
 const initialState = {
@@ -24,7 +25,7 @@ export default function ClientServices() {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/services');
+      const res = await apiRequest('/services');
       setServices(await res.json());
     } catch (err) {
       setError('Failed to fetch services');
@@ -35,7 +36,7 @@ export default function ClientServices() {
 
   const fetchClients = async () => {
     try {
-      const res = await fetch('http://localhost:8080/api/clients');
+      const res = await apiRequest('/clients');
       setClients(await res.json());
     } catch (err) {
       setError('Failed to fetch clients');
@@ -59,15 +60,13 @@ export default function ClientServices() {
       };
       let res;
       if (editingId) {
-        res = await fetch(`http://localhost:8080/api/services/${editingId}`, {
+        res = await apiRequest(`/services/${editingId}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       } else {
-        res = await fetch('http://localhost:8080/api/services', {
+        res = await apiRequest('/services', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       }
@@ -96,7 +95,7 @@ export default function ClientServices() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`http://localhost:8080/api/services/${id}`, {
+      const res = await apiRequest(`/services/${id}`, {
         method: 'DELETE'
       });
       if (!res.ok) throw new Error('Failed to delete service');

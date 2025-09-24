@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="5" author="auth-system">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <!-- Insert default admin user -->
+        <insert tableName="users">
+            <column name="username" value="admin"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="full_name" value="Administrator"/>
+            <column name="role" value="ADMIN"/>
+            <column name="enabled" value="true"/>
+        </insert>
+        
+        <!-- Insert default veterinarian -->
+        <insert tableName="users">
+            <column name="username" value="vet"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="full_name" value="Dr. Veterinário"/>
+            <column name="role" value="VETERINARIAN"/>
+            <column name="enabled" value="true"/>
+        </insert>
+        
+        <!-- Insert default receptionist -->
+        <insert tableName="users">
+            <column name="username" value="recep"/>
+            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="full_name" value="Recepcionista"/>
+            <column name="role" value="RECEPTIONIST"/>
+            <column name="enabled" value="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

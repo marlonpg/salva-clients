@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiRequest } from '../utils/api';
 import './ClientForm.css';
 
 const initialState = {
@@ -25,9 +26,8 @@ export default function ClientForm({ onSuccess }) {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:8080/api/clients', {
+      const res = await apiRequest('/clients', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
       if (!res.ok) throw new Error('Failed to save client');

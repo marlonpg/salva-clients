@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiRequest } from '../utils/api';
 import './Inventory.css';
 
 const initialState = {
@@ -28,7 +29,7 @@ export default function Inventory() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8080/api/products');
+      const res = await apiRequest('/products');
       setProducts(await res.json());
     } catch (err) {
       setError('Failed to fetch products');
@@ -54,15 +55,13 @@ export default function Inventory() {
       };
       let res;
       if (editingId) {
-        res = await fetch(`http://localhost:8080/api/products/${editingId}`, {
+        res = await apiRequest(`/products/${editingId}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       } else {
-        res = await fetch('http://localhost:8080/api/products', {
+        res = await apiRequest('/products', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       }
@@ -95,7 +94,7 @@ export default function Inventory() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`http://localhost:8080/api/products/${id}`, {
+      const res = await apiRequest(`/products/${id}`, {
         method: 'DELETE'
       });
       if (!res.ok) throw new Error('Failed to delete product');
