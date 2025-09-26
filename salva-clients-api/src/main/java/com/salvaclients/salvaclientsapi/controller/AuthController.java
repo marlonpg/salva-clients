@@ -98,6 +98,22 @@ public class AuthController {
         ));
     }
 
+    @GetMapping("/debug")
+    public ResponseEntity<?> debug() {
+        org.springframework.security.core.Authentication auth = 
+            org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+        
+        if (auth == null) {
+            return ResponseEntity.ok("No authentication found");
+        }
+        
+        return ResponseEntity.ok(Map.of(
+            "username", auth.getName(),
+            "authorities", auth.getAuthorities().toString(),
+            "authenticated", auth.isAuthenticated()
+        ));
+    }
+
     public static class LoginRequest {
         private String username;
         private String password;

@@ -9,4 +9,7 @@
     <include file="db/changelog/changes/add-amount-to-service-table.xml"/>
     <include file="db/changelog/changes/create-product-table.xml"/>
     <include file="db/changelog/changes/create-users-table.xml"/>
+    <include file="db/changelog/changes/create-stock-movement-table.xml"/>
+    <include file="db/changelog/changes/add-created-by-to-stock-movement.xml"/>
+    <include file="db/changelog/changes/add-unit-price-to-stock-movement.xml"/>
 </databaseChangeLog>
