@@ -36,6 +36,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/services/**").hasAnyRole("ADMIN", "VETERINARIAN")
                 .requestMatchers("/api/products/**").hasAnyRole("ADMIN", "VETERINARIAN")
                 .requestMatchers("/api/stock-movements/**").hasAnyRole("ADMIN", "VETERINARIAN")
+                .requestMatchers("/api/expenses/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

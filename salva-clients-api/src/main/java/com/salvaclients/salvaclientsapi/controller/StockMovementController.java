@@ -45,7 +45,7 @@ public class StockMovementController {
         
         // Validate stock for OUT movements
         if ("OUT".equals(request.getType()) && currentStock < request.getQuantity()) {
-            return ResponseEntity.badRequest().body("Estoque insuficiente. Estoque atual: " + currentStock);
+            return ResponseEntity.badRequest().build();
         }
         
         StockMovement movement = new StockMovement();

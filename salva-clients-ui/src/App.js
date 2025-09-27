@@ -7,6 +7,7 @@ import ClientSearch from './components/ClientSearch';
 import ClientServices from './components/ClientServices';
 import UserProfile from './components/UserProfile';
 import Inventory from './components/Inventory';
+import CostManagement from './components/CostManagement';
 import './App.css';
 
 function AppContent() {
@@ -27,6 +28,9 @@ function AppContent() {
           {hasAnyRole(['ADMIN', 'VETERINARIAN']) && (
             <Link to="/inventory" style={{ color: 'green', fontWeight: 'bold', textDecoration: 'none' }}>Estoque</Link>
           )}
+          {hasAnyRole(['ADMIN']) && (
+            <Link to="/costs" style={{ color: 'green', fontWeight: 'bold', textDecoration: 'none' }}>Gestão de Custos</Link>
+          )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span>Olá, {user.fullName}</span>
@@ -42,6 +46,9 @@ function AppContent() {
         )}
         {hasAnyRole(['ADMIN', 'VETERINARIAN']) && (
           <Route path="/inventory" element={<Inventory />} />
+        )}
+        {hasAnyRole(['ADMIN']) && (
+          <Route path="/costs" element={<CostManagement />} />
         )}
         <Route path="/clients/:id" element={<UserProfile />} />
       </Routes>
