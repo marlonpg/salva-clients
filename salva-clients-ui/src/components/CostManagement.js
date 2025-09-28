@@ -7,7 +7,12 @@ const api = {
   post: (endpoint, data) => apiRequest(endpoint, {
     method: 'POST',
     body: JSON.stringify(data)
-  }).then(res => res.json())
+  }).then(res => res.json()),
+  put: (endpoint, data) => apiRequest(endpoint, {
+    method: 'PUT',
+    body: JSON.stringify(data)
+  }).then(res => res.json()),
+  delete: (endpoint) => apiRequest(endpoint, { method: 'DELETE' })
 };
 
 const CostManagement = () => {
@@ -16,6 +21,7 @@ const CostManagement = () => {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
   const [formData, setFormData] = useState({
     category: '',
@@ -57,7 +63,11 @@ const CostManagement = () => {
     setLoading(true);
     setError('');
     try {
-      await api.post('/expenses', formData);
+      if (editingId) {
+        await api.put(`/expenses/${editingId}`, formData);
+      } else {
+        await api.post('/expenses', formData);
+      }
       setFormData({
         category: '',
         description: '',
@@ -66,10 +76,37 @@ const CostManagement = () => {
         supplier: '',
         notes: ''
       });
+      setEditingId(null);
       setShowForm(false);
       loadExpenses();
     } catch (err) {
       setError('Erro ao salvar despesa');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEdit = (expense) => {
+    setFormData({
+      category: expense.category,
+      description: expense.description,
+      amount: expense.amount,
+      expenseDate: expense.expenseDate,
+      supplier: expense.supplier || '',
+      notes: expense.notes || ''
+    });
+    setEditingId(expense.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = async (id) => {
+    setLoading(true);
+    setError('');
+    try {
+      await api.delete(`/expenses/${id}`);
+      loadExpenses();
+    } catch (err) {
+      setError('Erro ao excluir despesa');
     } finally {
       setLoading(false);
     }
@@ -103,7 +140,20 @@ const CostManagement = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <h3 style={{ color: 'green' }}>Despesas do Mês</h3>
         <button
-          onClick={() => setShowForm(!showForm)}
+          onClick={() => {
+            setShowForm(!showForm);
+            if (showForm) {
+              setEditingId(null);
+              setFormData({
+                category: '',
+                description: '',
+                amount: '',
+                expenseDate: new Date().toISOString().slice(0, 10),
+                supplier: '',
+                notes: ''
+              });
+            }
+          }}
           style={{ background: 'green', color: 'white', padding: '0.5rem 1rem', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
         >
           {showForm ? 'Cancelar' : 'Nova Despesa'}
@@ -159,9 +209,25 @@ const CostManagement = () => {
               onChange={(e) => setFormData({...formData, notes: e.target.value})}
             />
           </div>
-          <button type="submit" disabled={loading} style={{ background: 'green', color: 'white' }}>
-            Salvar Despesa
+          <button type="submit" disabled={loading} style={{ background: editingId ? 'orange' : 'green', color: 'white' }}>
+            {editingId ? 'Atualizar Despesa' : 'Salvar Despesa'}
           </button>
+          {editingId && (
+            <button type="button" onClick={() => {
+              setFormData({
+                category: '',
+                description: '',
+                amount: '',
+                expenseDate: new Date().toISOString().slice(0, 10),
+                supplier: '',
+                notes: ''
+              });
+              setEditingId(null);
+              setShowForm(false);
+            }} style={{ marginLeft: '1rem' }}>
+              Cancelar
+            </button>
+          )}
         </form>
       )}
 
@@ -180,6 +246,7 @@ const CostManagement = () => {
               <th>Descrição</th>
               <th>Valor</th>
               <th>Fornecedor</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -190,10 +257,18 @@ const CostManagement = () => {
                 <td>{expense.description}</td>
                 <td>{formatCurrency(expense.amount)}</td>
                 <td>{expense.supplier || '-'}</td>
+                <td>
+                  <button onClick={() => handleEdit(expense)} style={{ marginRight: '0.5rem', background: 'orange', color: 'white' }}>
+                    Editar
+                  </button>
+                  <button onClick={() => handleDelete(expense.id)} style={{ background: 'red', color: 'white' }}>
+                    Excluir
+                  </button>
+                </td>
               </tr>
             )) : (
               <tr>
-                <td colSpan="5" style={{ textAlign: 'center', color: '#666' }}>
+                <td colSpan="6" style={{ textAlign: 'center', color: '#666' }}>
                   Nenhuma despesa encontrada para este mês
                 </td>
               </tr>

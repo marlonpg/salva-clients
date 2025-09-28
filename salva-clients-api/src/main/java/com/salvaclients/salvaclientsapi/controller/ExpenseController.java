@@ -50,6 +50,30 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseRepository.save(expense));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody ExpenseRequest request) {
+        return expenseRepository.findById(id)
+            .map(expense -> {
+                expense.setCategory(request.getCategory());
+                expense.setDescription(request.getDescription());
+                expense.setAmount(request.getAmount());
+                expense.setExpenseDate(request.getExpenseDate());
+                expense.setSupplier(request.getSupplier());
+                expense.setNotes(request.getNotes());
+                return ResponseEntity.ok(expenseRepository.save(expense));
+            })
+            .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+        if (expenseRepository.existsById(id)) {
+            expenseRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/summary")
     public ResponseEntity<Map<String, Object>> getExpenseSummary(@RequestParam String month) {
         LocalDate startDate = LocalDate.parse(month + "-01");

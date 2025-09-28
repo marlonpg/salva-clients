@@ -13,4 +13,5 @@
     <include file="db/changelog/changes/add-created-by-to-stock-movement.xml"/>
     <include file="db/changelog/changes/add-unit-price-to-stock-movement.xml"/>
     <include file="db/changelog/007-create-expenses-table.xml"/>
+    <include file="db/changelog/008-add-email-to-users.xml"/>
 </databaseChangeLog>

@@ -8,6 +8,8 @@ import ClientServices from './components/ClientServices';
 import UserProfile from './components/UserProfile';
 import Inventory from './components/Inventory';
 import CostManagement from './components/CostManagement';
+import UserManagement from './components/UserManagement';
+import ChangePassword from './components/ChangePassword';
 import './App.css';
 
 function AppContent() {
@@ -31,9 +33,13 @@ function AppContent() {
           {hasAnyRole(['ADMIN']) && (
             <Link to="/costs" style={{ color: 'green', fontWeight: 'bold', textDecoration: 'none' }}>Gestão de Custos</Link>
           )}
+          {hasAnyRole(['ADMIN']) && (
+            <Link to="/users" style={{ color: 'green', fontWeight: 'bold', textDecoration: 'none' }}>Usuários</Link>
+          )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <span>Olá, {user.fullName}</span>
+          <Link to="/change-password" style={{ color: 'green', textDecoration: 'none' }}>Alterar Senha</Link>
           <button onClick={logout} style={{ background: 'red', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>
             Sair
           </button>
@@ -50,6 +56,10 @@ function AppContent() {
         {hasAnyRole(['ADMIN']) && (
           <Route path="/costs" element={<CostManagement />} />
         )}
+        {hasAnyRole(['ADMIN']) && (
+          <Route path="/users" element={<UserManagement />} />
+        )}
+        <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/clients/:id" element={<UserProfile />} />
       </Routes>
     </div>

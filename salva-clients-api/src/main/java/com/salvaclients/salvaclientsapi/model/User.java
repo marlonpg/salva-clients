@@ -24,12 +24,17 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String fullName;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Column(nullable = false)
     private boolean enabled = true;
+
+    private boolean passwordSet = false;
 
     public enum Role {
         ADMIN, VETERINARIAN, RECEPTIONIST
@@ -66,8 +71,14 @@ public class User implements UserDetails {
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
 
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
+
+    public boolean isPasswordSet() { return passwordSet; }
+    public void setPasswordSet(boolean passwordSet) { this.passwordSet = passwordSet; }
 }
