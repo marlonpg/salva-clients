@@ -29,7 +29,7 @@
         <!-- Insert default admin user -->
         <insert tableName="users">
             <column name="username" value="admin"/>
-            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="password" value="$2a$10$GmPkAznRHHWN.JbUeQPUduBBP88AWPbeETv3zA6BjWLkc5kr1KyAC"/> <!-- password -->
             <column name="full_name" value="Administrator"/>
             <column name="role" value="ADMIN"/>
             <column name="enabled" value="true"/>
@@ -38,7 +38,7 @@
         <!-- Insert default veterinarian -->
         <insert tableName="users">
             <column name="username" value="vet"/>
-            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="password" value="$2a$10$GmPkAznRHHWN.JbUeQPUduBBP88AWPbeETv3zA6BjWLkc5kr1KyAC"/> <!-- password -->
             <column name="full_name" value="Dr. Veterinário"/>
             <column name="role" value="VETERINARIAN"/>
             <column name="enabled" value="true"/>
@@ -47,7 +47,7 @@
         <!-- Insert default receptionist -->
         <insert tableName="users">
             <column name="username" value="recep"/>
-            <column name="password" value="$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi."/> <!-- password -->
+            <column name="password" value="$2a$10$GmPkAznRHHWN.JbUeQPUduBBP88AWPbeETv3zA6BjWLkc5kr1KyAC"/> <!-- password -->
             <column name="full_name" value="Recepcionista"/>
             <column name="role" value="RECEPTIONIST"/>
             <column name="enabled" value="true"/>

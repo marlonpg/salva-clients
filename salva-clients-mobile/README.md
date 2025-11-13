@@ -63,31 +63,49 @@ choco install git -y
 
 ### 3. Setup Android SDK
 
-**After installing Android Studio:**
+**IMPORTANT: Install Command-line Tools first!**
 
-1. Open Android Studio
-2. Go to: `File` → `Settings` → `Appearance & Behavior` → `System Settings` → `Android SDK`
-3. Note the SDK location (usually: `C:\Users\<username>\AppData\Local\Android\Sdk`)
-4. Install SDK components:
-   - Android SDK Platform (latest)
-   - Android SDK Build-Tools
-   - Android SDK Command-line Tools
+1. **Open Android Studio**
+2. **Go to SDK Manager:**
+   - Click `More Actions` (3 dots) on welcome screen → `SDK Manager`
+   - OR: `File` → `Settings` → `Appearance & Behavior` → `System Settings` → `Android SDK`
 
-**Configure Flutter to use Android SDK:**
+3. **Install required components:**
+   - Go to `SDK Platforms` tab:
+     - ✅ Check `Android 13.0 (Tiramisu)` or latest
+   
+   - Go to `SDK Tools` tab:
+     - ✅ Check `Android SDK Command-line Tools (latest)`
+     - ✅ Check `Android SDK Build-Tools`
+     - ✅ Check `Android SDK Platform-Tools`
+     - ✅ Check `Android Emulator`
+   
+   - Click `Apply` → `OK`
+
+4. **Note the SDK location** (usually: `C:\Users\gamba\AppData\Local\Android\Sdk`)
+
+**Configure Flutter:**
 ```bash
-# Let Flutter detect Android Studio automatically
+# Verify Flutter can find Android SDK
 flutter doctor
 
-# If Flutter can't find Android SDK, set it manually:
+# If needed, set SDK location manually:
 flutter config --android-sdk "C:\Users\gamba\AppData\Local\Android\Sdk"
 
-# Accept Android licenses
+# Accept Android licenses (MUST run after installing cmdline-tools)
 flutter doctor --android-licenses
+# Press 'y' to accept all licenses
 ```
 
-**Common Issues:**
-- If `flutter doctor` shows "Android toolchain" issues, run: `flutter doctor --android-licenses`
-- If cmdline-tools not found, install via Android Studio SDK Manager
+**Fix "cmdline-tools not found" error:**
+1. Open Android Studio SDK Manager
+2. Go to `SDK Tools` tab
+3. Check `Show Package Details` (bottom right)
+4. Expand `Android SDK Command-line Tools`
+5. Check the latest version
+6. Click `Apply`
+7. Close and reopen terminal
+8. Run: `flutter doctor --android-licenses`
 
 ### 4. Setup Android Emulator
 
@@ -111,21 +129,47 @@ flutter devices
 
 ## 🚀 Quick Start
 
-```bash
-# IMPORTANT: Close and reopen terminal after Flutter installation
+### First Time Setup
 
+```bash
 # Navigate to project directory
 cd c:\Users\gamba\Documents\github\salva-clients\salva-clients-mobile
 
-# Create Flutter project
-flutter create .
-
 # Install dependencies
 flutter pub get
-
-# Run the app
-flutter run
 ```
+
+### Running the App
+
+**1. Start the Android Emulator:**
+- Open Android Studio
+- Go to `Tools` → `Device Manager`
+- Click ▶️ (play) on your emulator (e.g., Medium Phone API 36.1)
+- Wait for emulator to fully start
+
+**2. Verify emulator is running:**
+```bash
+flutter devices
+# Should show: Medium Phone API 36.1 (mobile) • emulator-5554 • android
+```
+
+**3. Start the Backend API (in a separate terminal):**
+```bash
+cd c:\Users\gamba\Documents\github\salva-clients\salva-clients-api
+.\run.sh
+# Backend will run on http://localhost:8080
+```
+
+**4. Run the Flutter app:**
+```bash
+cd c:\Users\gamba\Documents\github\salva-clients\salva-clients-mobile
+flutter run
+# App will compile and install on emulator
+```
+
+**5. Login with test credentials:**
+- Username: `admin`
+- Password: `password`
 
 ## 📦 Project Structure
 
@@ -170,13 +214,13 @@ salva-clients-mobile/
 
 ### Phase 1: Setup & Authentication (MVP Core)
 1. ✅ Create Flutter project structure
-2. ⏳ Setup dependencies (http, provider, shared_preferences)
-3. ⏳ Build API service layer
-4. ⏳ Implement Login screen with JWT storage
-5. ⏳ Create auth state management
+2. ✅ Setup dependencies (http, provider, shared_preferences)
+3. ✅ Build API service layer
+4. ✅ Implement Login screen with JWT storage
+5. ✅ Create auth state management
 
 ### Phase 2: Client Management (Primary Feature)
-6. ⏳ Clients list screen with search
+6. ✅ Clients list screen with search
 7. ⏳ Client detail screen
 8. ⏳ Add/Edit client forms
 9. ⏳ Client services view
@@ -278,11 +322,30 @@ Base URL: `http://localhost:8080/api`
 ## ✅ Pre-Flight Checklist
 
 Before starting development:
-- [ ] Flutter SDK installed
-- [ ] `flutter doctor` shows no critical issues
-- [ ] Android Studio or VS Code ready
-- [ ] Emulator created or physical device connected
+- [x] Flutter SDK installed
+- [x] `flutter doctor` shows no critical issues
+- [x] Android Studio or VS Code ready
+- [x] Emulator created (Medium Phone API 36.1)
 - [ ] Backend API running on `http://localhost:8080`
+
+## 🔧 Troubleshooting
+
+**"Unable to connect to server"**
+- Make sure backend is running on `http://localhost:8080`
+- Check if emulator can reach host: use `http://10.0.2.2:8080` (already configured)
+
+**"No devices found"**
+- Start emulator from Android Studio Device Manager
+- Run `flutter devices` to verify
+
+**"Build failed"**
+- Run `flutter clean` then `flutter pub get`
+- Restart Android Studio and emulator
+
+**Hot Reload:**
+- Press `r` in terminal to hot reload
+- Press `R` to hot restart
+- Press `q` to quit
 
 ## 🧪 Testing
 
