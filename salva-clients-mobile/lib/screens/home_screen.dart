@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import 'clients/clients_list_screen.dart';
+import 'services/services_screen.dart';
+import 'inventory/inventory_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,8 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final List<Widget> screens = [
       const ClientsListScreen(),
-      const Center(child: Text('Serviços - Em desenvolvimento')),
-      const Center(child: Text('Estoque - Em desenvolvimento')),
+      const ServicesScreen(),
+      const InventoryScreen(),
     ];
 
     return Scaffold(

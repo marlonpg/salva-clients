@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../models/client.dart';
 import '../../services/api_service.dart';
 import '../../utils/constants.dart';
+import 'client_detail_screen.dart';
+import 'client_form_screen.dart';
 
 class ClientsListScreen extends StatefulWidget {
   const ClientsListScreen({super.key});
@@ -78,7 +80,8 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+      body: Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(16),
@@ -130,8 +133,14 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
                               ],
                             ),
                             isThreeLine: true,
-                            onTap: () {
-                              // TODO: Navigate to client detail
+                            onTap: () async {
+                              final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ClientDetailScreen(client: client),
+                                ),
+                              );
+                              if (result == true) _loadClients();
                             },
                           ),
                         );
@@ -139,6 +148,19 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
                     ),
         ),
       ],
+    ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ClientFormScreen(),
+            ),
+          );
+          if (result == true) _loadClients();
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
