@@ -1,21 +1,11 @@
-2025-08-15 00:54:46.830829-03:00 jdbc[3]: exception
+2025-11-18 23:02:16.150694-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
 SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-224]
-2025-08-15 00:55:07.927519-03:00 jdbc[3]: exception
+2025-11-18 23:18:00.838143-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-15 00:55:33.749915-03:00 jdbc[3]: exception
+2025-11-18 23:18:27.874028-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-15 00:55:50.433828-03:00 jdbc[3]: exception
+2025-11-18 23:18:54.565150-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-15 00:56:18.364342-03:00 jdbc[3]: exception
+2025-11-18 23:19:25.756242-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-15 00:56:31.399950-03:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-08-15 00:57:12.981224-03:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
-2025-11-12 21:32:59.956549-03:00 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "$2[*]a$10$2XHAaKwuPjgMSMUrLjN/e.Ir.a4CzaYVKZg/kNhz9npOEukbE/l3."; expected "="; SQL statement:
-$2a$10$2XHAaKwuPjgMSMUrLjN/e.Ir.a4CzaYVKZg/kNhz9npOEukbE/l3. [42001-224]
-2025-11-12 21:33:01.772375-03:00 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "$2[*]a$10$2XHAaKwuPjgMSMUrLjN/e.Ir.a4CzaYVKZg/kNhz9npOEukbE/l3."; expected "="; SQL statement:
-$2a$10$2XHAaKwuPjgMSMUrLjN/e.Ir.a4CzaYVKZg/kNhz9npOEukbE/l3. [42001-224]
